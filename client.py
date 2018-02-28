@@ -75,7 +75,7 @@ def main():
                 resetLed()
                 imgClass = clientCode()
                 print "Image class is {}".format(imgClass)
-                # switchOnLed(imgClass)
+                switchOnLed(imgClass)
                 
             #update previous input
             prev_input = input
