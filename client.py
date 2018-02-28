@@ -53,6 +53,7 @@ def main():
     GPIO.setup(7, GPIO.OUT)  
     GPIO.setup(12, GPIO.OUT)    
 
+    i = 0
     try:
         while True:
             button_state = GPIO.input(23)
@@ -60,7 +61,8 @@ def main():
                 # resetLed()
                 # imgClass = clientCode() 
                 # print ("Image class is {}".format(imgClass))
-                print "button pressed"
+                i += 1
+                print "button pressed", i
                 switchOnLed(0)
             else:
                 switchOffLed(0)
