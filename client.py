@@ -61,7 +61,7 @@ def main():
 
     i = 0
     j = 0
-    print "start of code"
+
     resetLed()
     switchOnLed(4)
     prev_input = 1
@@ -97,6 +97,8 @@ def main():
                 imgClass = clientCode()
                 print "Image class is {}".format(imgClass)
                 switchOnLed(imgClass)
+                print "led on"
+                time.sleep(3)
             #update previous input
             prev_input = input
             #slight pause to debounce
