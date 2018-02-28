@@ -63,8 +63,9 @@ def main():
     i = 0
     j = 0
     print "start of code"
+    resetLed()
+    prev_input = 0
     try:
-        prev_input = 0
         while True:
 
             # button_state = GPIO.input(23)
