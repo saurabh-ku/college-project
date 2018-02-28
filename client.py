@@ -15,12 +15,13 @@ def switchOffLed(type):
         GPIO.output(classToLed[type], False)
 
 def resetLed():
-    for i in range(0, 4):
+    for i in range(0, 5):
+        print "switch off", i
         GPIO.output(classToLed[i], False)
         time.sleep(1)
 
 def testLights():
-    for i in range(0, 4):
+    for i in range(0, 5):
         print "light up", i
         switchOnLed(i)
         time.sleep(2)
