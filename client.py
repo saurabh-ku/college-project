@@ -67,38 +67,14 @@ def main():
     prev_input = 1
     try:
         while True:
-
-            # button_state = GPIO.input(23)
-            # if ((not prev_input) and button_state):
-            #     # resetLed()
-            #     # imgClass = clientCode() 
-            #     # print ("Image class is {}".format(imgClass))
-            #     i += 1
-            #     print "button pressed", i
-            #     switchOnLed(0)
-            # j += 1
-            # print "hello", j
-            # prev_input = button_state
-            # testLights()
-
-            # button_state = GPIO.input(23)
-            # if button_state == False:
-            #     switchOnLed(0)
-            #     print "Button pressed"
-            #     time.sleep(0.2)
-            # else:
-            #     switchOffLed(0)
-            
-            #take a reading
             input = GPIO.input(23)
             #if the last reading was low and this one high, print
             if ((not prev_input) and input):
                 resetLed()
                 imgClass = clientCode()
                 print "Image class is {}".format(imgClass)
-                switchOnLed(imgClass)
-                print "led on"
-                time.sleep(3)
+                # switchOnLed(imgClass)
+                
             #update previous input
             prev_input = input
             #slight pause to debounce
