@@ -64,7 +64,9 @@ def main():
     j = 0
     print "start of code"
     try:
+        prev_input = 0
         while True:
+
             # button_state = GPIO.input(23)
             # if ((not prev_input) and button_state):
             #     # resetLed()
@@ -78,15 +80,27 @@ def main():
             # prev_input = button_state
             # testLights()
 
-            button_state = GPIO.input(23)
-            if button_state == False:
-                switchOnLed(0)
-                print "Button pressed"
-                time.sleep(0.2)
-            else:
-                switchOffLed(0)
+            # button_state = GPIO.input(23)
+            # if button_state == False:
+            #     switchOnLed(0)
+            #     print "Button pressed"
+            #     time.sleep(0.2)
+            # else:
+            #     switchOffLed(0)
+            
+            #take a reading
+            input = GPIO.input(23)
+            #if the last reading was low and this one high, print
+            if ((not prev_input) and input):
+                print("Button pressed")
+            #update previous input
+            prev_input = input
+            #slight pause to debounce
+            time.sleep(0.05)
     except:
+        print "clean up"
         GPIO.cleanup()
 
 main()
+
 
