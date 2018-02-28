@@ -50,6 +50,7 @@ def clientCode():
 def takePictue(camera):
     imgPath = './lena.jpg'
     camera.capture(imgPath)
+    camera.close()
     
 
 def main():
