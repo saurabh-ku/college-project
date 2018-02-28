@@ -92,12 +92,14 @@ def main():
             input = GPIO.input(23)
             #if the last reading was low and this one high, print
             if ((not prev_input) and input):
-                print("Button pressed")
+                resetLed()
+                imgClass = clientCode()
+                print "Image class is {}".format(imgClass)
+                switchOnLed(imgClass)
             #update previous input
             prev_input = input
             #slight pause to debounce
             time.sleep(0.05)
-	    print "prev={} input={}".format(prev_input, input)
     except:
         print "clean up"
         GPIO.cleanup()
