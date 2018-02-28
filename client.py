@@ -5,6 +5,7 @@ import time
 import cv2
 import requests
 import json
+from picamera import PiCamera
 
 classToLed = [24, 25, 8, 7, 12]
 
@@ -46,7 +47,12 @@ def clientCode():
     # decode response
     return imgClass
 
-
+def takePictue():
+    camera = PiCamera()
+    camera.start_preview()
+    imgPath = './lena.jpg'
+    camera.capture(imgPath)
+    camera.stop_preview()
 
 def main():
     GPIO.setmode(GPIO.BCM)
@@ -58,20 +64,18 @@ def main():
     GPIO.setup(25, GPIO.OUT)  
     GPIO.setup(8, GPIO.OUT)  
     GPIO.setup(7, GPIO.OUT)  
-    GPIO.setup(12, GPIO.OUT)    
-
-    i = 0
-    j = 0
+    GPIO.setup(12, GPIO.OUT)
 
     resetLed()
     switchOnLed(4)
-    prev_input = 1
+    prev_input = 0
     try:
         while True:
             input = GPIO.input(23)
             #if the last reading was low and this one high, print
             if ((not prev_input) and input):
                 resetLed()
+                takePictue()
                 imgClass = clientCode()
                 print "Image class is {}".format(imgClass)
                 switchOnLed(imgClass)
