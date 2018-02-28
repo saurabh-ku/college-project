@@ -1,6 +1,6 @@
 #!flask/bin/python
 
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import cv2
 import requests
