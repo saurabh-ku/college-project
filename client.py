@@ -18,6 +18,13 @@ def resetLed():
     for i in range(0, 4):
         GPIO.output(classToLed[i], False)
 
+def testLights():
+    for i in range(0, 4):
+        print "light up", i
+        switchOnLed(i)
+        time.sleep(2)
+        switchOffLed(i)
+
 def clientCode():
     addr = 'http://192.168.29.148:5000'
     test_url = addr + '/api/getclass'
@@ -55,19 +62,21 @@ def main():
 
     i = 0
     j = 0
+    print "start of code"
     try:
         while True:
-            button_state = GPIO.input(23)
-            if ((not prev_input) and button_state):
-                # resetLed()
-                # imgClass = clientCode() 
-                # print ("Image class is {}".format(imgClass))
-                i += 1
-                print "button pressed", i
-                switchOnLed(0)
-            j += 1
-            print "hello", j
-            prev_input = button_state
+            # button_state = GPIO.input(23)
+            # if ((not prev_input) and button_state):
+            #     # resetLed()
+            #     # imgClass = clientCode() 
+            #     # print ("Image class is {}".format(imgClass))
+            #     i += 1
+            #     print "button pressed", i
+            #     switchOnLed(0)
+            # j += 1
+            # print "hello", j
+            # prev_input = button_state
+            testLights()
     except:
         GPIO.cleanup()
 
