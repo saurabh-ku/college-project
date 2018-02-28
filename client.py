@@ -59,6 +59,7 @@ def main():
             if button_state == False:
                 resetLed()
                 imgClass = clientCode() 
+                print ("Image class is {}".format(imgClass))
                 switchOnLed(imgClass)
     except:
         GPIO.cleanup()
