@@ -19,7 +19,7 @@ def resetLed():
         GPIO.output(classToLed[i], False)
 
 def clientCode():
-    addr = 'http://localhost:5000'
+    addr = 'http://192.168.29.148:5000'
     test_url = addr + '/api/getclass'
 
     # prepare headers for http request
