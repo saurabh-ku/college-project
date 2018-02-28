@@ -18,7 +18,7 @@ def resetLed():
     for i in range(0, 5):
         print "switch off", i
         GPIO.output(classToLed[i], False)
-        time.sleep(1)
+        time.sleep(0.2)
 
 def testLights():
     for i in range(0, 5):
@@ -81,8 +81,8 @@ def main():
             prev_input = input
             #slight pause to debounce
             time.sleep(0.05)
-    except:
-        print "clean up"
+    except e:
+        print "clean up", e
         GPIO.cleanup()
 
 main()
