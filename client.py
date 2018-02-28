@@ -47,12 +47,10 @@ def clientCode():
     # decode response
     return imgClass
 
-def takePictue():
-    camera = PiCamera()
-    camera.start_preview()
+def takePictue(camera):
     imgPath = './lena.jpg'
     camera.capture(imgPath)
-    camera.stop_preview()
+    
 
 def main():
     GPIO.setmode(GPIO.BCM)
@@ -66,6 +64,9 @@ def main():
     GPIO.setup(7, GPIO.OUT)  
     GPIO.setup(12, GPIO.OUT)
 
+    camera = PiCamera()
+    camera.start_preview()
+    
     resetLed()
     switchOnLed(4)
     prev_input = 0
@@ -75,7 +76,8 @@ def main():
             #if the last reading was low and this one high, print
             if ((not prev_input) and input):
                 resetLed()
-                takePictue()
+                print "taking picture"
+                takePictue(camera)
                 imgClass = clientCode()
                 print "Image class is {}".format(imgClass)
                 switchOnLed(imgClass)
@@ -88,6 +90,7 @@ def main():
     except:
         print "clean up"
         GPIO.cleanup()
+        camera.stop_preview()
 
 main()
 
