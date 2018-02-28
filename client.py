@@ -16,7 +16,6 @@ def switchOffLed(type):
 
 def resetLed():
     for i in range(0, 5):
-        print "switch off", i
         GPIO.output(classToLed[i], False)
         time.sleep(0.2)
 
@@ -43,7 +42,7 @@ def clientCode():
     response = requests.post(test_url, data=img_encoded.tostring(), headers=headers)
     classObj = json.loads(response.text)
     imgClass = classObj['class']
-
+    imgClass = int(imgClass)
     # decode response
     return imgClass
 
@@ -76,13 +75,14 @@ def main():
                 imgClass = clientCode()
                 print "Image class is {}".format(imgClass)
                 switchOnLed(imgClass)
+                time.sleep(0.2)
                 
             #update previous input
             prev_input = input
             #slight pause to debounce
             time.sleep(0.05)
-    except e:
-        print "clean up", e
+    except:
+        print "clean up"
         GPIO.cleanup()
 
 main()
