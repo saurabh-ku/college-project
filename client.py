@@ -51,8 +51,7 @@ def main():
     GPIO.setmode(GPIO.BCM)
 
     #Button to GPIO23
-    GPIO.setup(23, GPIO.IN)
-
+    GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)	
     #Led
     GPIO.setup(24, GPIO.OUT)
     GPIO.setup(25, GPIO.OUT)  
@@ -64,7 +63,7 @@ def main():
     j = 0
     print "start of code"
     resetLed()
-    prev_input = 0
+    prev_input = 1
     try:
         while True:
 
@@ -98,6 +97,7 @@ def main():
             prev_input = input
             #slight pause to debounce
             time.sleep(0.05)
+	    print "prev={} input={}".format(prev_input, input)
     except:
         print "clean up"
         GPIO.cleanup()
