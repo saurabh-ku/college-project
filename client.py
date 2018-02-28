@@ -63,6 +63,7 @@ def main():
     j = 0
     print "start of code"
     resetLed()
+    switchOnLed(4)
     prev_input = 1
     try:
         while True:
