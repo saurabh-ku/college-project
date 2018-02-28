@@ -54,6 +54,7 @@ def main():
     GPIO.setup(12, GPIO.OUT)    
 
     i = 0
+    j = 0
     try:
         while True:
             button_state = GPIO.input(23)
@@ -64,6 +65,8 @@ def main():
                 i += 1
                 print "button pressed", i
                 switchOnLed(0)
+            j += 1
+            print "hello", j
             prev_input = button_state
     except:
         GPIO.cleanup()
