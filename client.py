@@ -57,15 +57,14 @@ def main():
     try:
         while True:
             button_state = GPIO.input(23)
-            if button_state == False:
+            if ((not prev_input) and (button_state == False)):
                 # resetLed()
                 # imgClass = clientCode() 
                 # print ("Image class is {}".format(imgClass))
                 i += 1
                 print "button pressed", i
                 switchOnLed(0)
-            else:
-                switchOffLed(0)
+            prev_input = button_state
     except:
         GPIO.cleanup()
 
