@@ -76,7 +76,15 @@ def main():
             # j += 1
             # print "hello", j
             # prev_input = button_state
-            testLights()
+            # testLights()
+
+            button_state = GPIO.input(23)
+            if button_state == False:
+                switchOnLed(0)
+                print "Button pressed"
+                time.sleep(0.2)
+            else:
+                switchOffLed(0)
     except:
         GPIO.cleanup()
 
