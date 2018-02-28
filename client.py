@@ -57,7 +57,7 @@ def main():
     try:
         while True:
             button_state = GPIO.input(23)
-            if ((not prev_input) and (button_state == False)):
+            if ((not prev_input) and button_state):
                 # resetLed()
                 # imgClass = clientCode() 
                 # print ("Image class is {}".format(imgClass))
