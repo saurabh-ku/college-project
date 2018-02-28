@@ -44,7 +44,7 @@ def main():
     GPIO.setmode(GPIO.BCM)
 
     #Button to GPIO23
-    GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(23, GPIO.IN)
 
     #Led
     GPIO.setup(24, GPIO.OUT)
