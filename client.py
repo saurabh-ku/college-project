@@ -50,7 +50,7 @@ def clientCode():
 def takePictue(camera):
     imgPath = './lena.jpg'
     camera.capture(imgPath)
-    camera.close()
+    # camera.close()
     
 
 def main():
@@ -92,6 +92,7 @@ def main():
     except:
         print "clean up"
         GPIO.cleanup()
+    finally:
         camera.stop_preview()
 
 main()
