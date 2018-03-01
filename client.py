@@ -79,6 +79,7 @@ def main():
                 resetLed()
                 print "taking picture"
                 takePictue(camera)
+                time.sleep(2)
                 imgClass = clientCode()
                 print "Image class is {}".format(imgClass)
                 switchOnLed(imgClass)
