@@ -6,6 +6,7 @@ import cv2
 import requests
 import json
 from picamera import PiCamera
+from PIL import Image
 
 classToLed = [24, 25, 8, 7, 12]
 
@@ -40,6 +41,8 @@ def clientCode():
     _, img_encoded = cv2.imencode('.jpg', img)
     # send http request with image and receive response
     
+    # img = Image.open('lena.jpg')
+
     response = requests.post(test_url, data=img_encoded.tostring(), headers=headers)
     classObj = json.loads(response.text)
     imgClass = classObj['class']
@@ -48,7 +51,7 @@ def clientCode():
     return imgClass
 
 def takePictue(camera):
-    imgPath = './lena.jpg'
+    imgPath = '.data/lena.jpg'
     camera.capture(imgPath)
     # camera.close()
     

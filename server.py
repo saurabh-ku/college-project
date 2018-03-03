@@ -4,13 +4,17 @@ import jsonpickle
 import numpy as np
 import cv2
 import random
+from PIL import Image
+
+from tester import *
 
 # Initialize the Flask application
 app = Flask(__name__)
 
 def getClassFromImg(img):
-    return random.randint(0, 4)
+    # return random.randint(0, 4)
 
+    return inference(img)
 
 # route http posts to this method
 @app.route('/api/getclass', methods=['POST'])
@@ -22,6 +26,9 @@ def getclass():
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
     # do some fancy processing here....
+
+    img = Image.fromarray(img)
+    # img.show()
 
     imgClass = getClassFromImg(img)
     # build a response dict to send back to client
