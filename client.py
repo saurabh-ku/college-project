@@ -51,7 +51,7 @@ def clientCode():
     return imgClass
 
 def takePictue(camera):
-    imgPath = '.data/lena.jpg'
+    imgPath = 'lena.jpg'
     camera.capture(imgPath)
     # camera.close()
     
@@ -74,29 +74,29 @@ def main():
     resetLed()
     switchOnLed(4)
     prev_input = 0
-    # try:
-    while True:
-        input = GPIO.input(23)
-        #if the last reading was low and this one high, print
-        if ((not prev_input) and input):
-            resetLed()
-            print "taking picture"
-            takePictue(camera)
-            time.sleep(2)
-            imgClass = clientCode()
-            print "Image class is {}".format(imgClass)
-            switchOnLed(imgClass)
-            time.sleep(0.2)
-            
-        #update previous input
-        prev_input = input
-        #slight pause to debounce
-        time.sleep(0.05)
-    # except:
-    #     print "clean up"
-    #     GPIO.cleanup()
-    # finally:
-    camera.stop_preview()
+    try:
+        while True:
+            input = GPIO.input(23)
+            #if the last reading was low and this one high, print
+            if ((not prev_input) and input):
+                resetLed()
+                print "taking picture"
+                takePictue(camera)
+                time.sleep(2)
+                imgClass = clientCode()
+                print "Image class is {}".format(imgClass)
+                switchOnLed(imgClass)
+                time.sleep(0.2)
+                
+            #update previous input
+            prev_input = input
+            #slight pause to debounce
+            time.sleep(0.05)
+    except:
+        print "clean up"
+        GPIO.cleanup()
+    finally:
+        camera.stop_preview()
 
 main()
 
