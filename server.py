@@ -28,6 +28,7 @@ def getclass():
     # do some fancy processing here....
 
     img = Image.fromarray(img)
+    img.show()
     # img.show()
 
     imgClass = getClassFromImg(img)
