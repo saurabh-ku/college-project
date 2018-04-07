@@ -29,7 +29,7 @@ def testLights():
         switchOffLed(i)
 
 def clientCode():
-    addr = 'http://192.168.1.12:5000'
+    addr = 'http://192.168.43.230:5000'
     test_url = addr + '/api/getclass'
 
     # prepare headers for http request
@@ -79,11 +79,10 @@ def callPi():
 
     try:
         resetLed()
+	print ("Calling api")
         imgClass = clientCode()
         print ("Image class is {}".format(imgClass))
         switchOnLed(imgClass)
     except:
         print ("clean up")
         GPIO.cleanup()
-    finally:
-        camera.stop_preview()
