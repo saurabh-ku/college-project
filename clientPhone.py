@@ -23,21 +23,23 @@ def resetLed():
 
 def testLights():
     for i in range(0, 5):
-        print "light up", i
+        print ("light up", i)
         switchOnLed(i)
         time.sleep(2)
         switchOffLed(i)
 
 def clientCode():
-    addr = 'http://192.168.29.148:5000'
+    addr = 'http://192.168.1.12:5000'
     test_url = addr + '/api/getclass'
 
     # prepare headers for http request
     content_type = 'image/jpeg'
     headers = {'content-type': content_type}
 
-    img = cv2.imread('/data/img.jpg')
+    img = cv2.imread('./data/img.jpg')
+    #cv2.imshow('image', img)
     # encode image as jpeg
+    
     _, img_encoded = cv2.imencode('.jpg', img)
     # send http request with image and receive response
     
@@ -78,10 +80,10 @@ def callPi():
     try:
         resetLed()
         imgClass = clientCode()
-        print "Image class is {}".format(imgClass)
+        print ("Image class is {}".format(imgClass))
         switchOnLed(imgClass)
     except:
-        print "clean up"
+        print ("clean up")
         GPIO.cleanup()
     finally:
         camera.stop_preview()
